@@ -47,7 +47,7 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nec {
+  users.users.nec = {
     isNormalUser = true;
     description = "nec";
     extraGroups = ["networkmanager" "wheel"];
