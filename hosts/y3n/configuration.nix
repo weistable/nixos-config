@@ -47,12 +47,12 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nec = {
-    isNormalUser = true;
-    description = "nec";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [];
-  };
+  #  users.users.nec = {
+  #   isNormalUser = true;
+  #   description = "nec";
+  #   extraGroups = ["networkmanager" "wheel"];
+  #   packages = with pkgs; [];
+  # };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
