@@ -35,16 +35,16 @@
         forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
       overlays = import ./overlays { inherit inputs; };
       nixosConfigurations = {
-        y3n = nixpkgs.lib.nixosSystem {
+        y3nos = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/y3n ];
+          modules = [ ./hosts/y3nos ];
         };
       };
       homeConfigurations = {
-        "nec@y3n" = home-manager.lib.homeManagerConfiguration {
+        "nec@y3nos" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/nec/y3n.nix ];
+          modules = [ ./home/nec/y3nos.nix ];
         };
       };
     };
