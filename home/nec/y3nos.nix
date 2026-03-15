@@ -1,21 +1,51 @@
-{ config, ... }: {
-    imports = [
-        ../common
-        ../features/cli
-        ../features/desktop
-        ./home.nix
-    ];
+{
+  imports = [
+    ../common
+    ../features/cli
+    ../features/desktop
+    ./home.nix
+  ];
 
-    features = {
-        cli = {
-            fish.enable = true;
-            fzf.enable = true;
-            neofetch.enable = true;
-        };
-        desktop = {
-            wayland.enable = true;
-        };
+  features = {
+    cli = {
+      fish.enable = true;
+      fzf.enable = true;
+      neofetch.enable = true;
     };
+    desktop = {
+      hyprland.enable = true;
+      wayland.enable = true;
+    };
+  };
 
 
+# hyprland 每台pc特有的配置，键盘，鼠标，显示器等
+# Hyprland's PC-specific configurations, including keyboard, mouse, and display settings, etc.
+  wayland.windowManager.hyprland = {
+    settings = {
+      device = [
+        {
+          name = "keyboard";
+          kb_layout = "us";
+        }
+        {
+          name = "mouse";
+          sensitivity = -0.5;
+        }
+      ];
+      monitor = [
+        "DP-1,2560x1440@144,0x0,1"
+        "DP-2,2560x1440@144,2560x0,1"
+      ];
+      workspace = [
+        "1, monitor:DP-1, default:true"
+        "2, monitor:DP-1"
+        "3, monitor:DP-1"
+        "4, monitor:DP-2"
+        "5, monitor:DP-1"
+        "6, monitor:DP-2"
+        "7, monitor:DP-2"
+      ];
+    };
+  };
 }
