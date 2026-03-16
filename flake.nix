@@ -18,6 +18,16 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
+
+    # disko (use in cloudserver, vm, .etc)
+    # disko version follows nixos-unstable
+    disko = {
+      url = {github:nix-community/disko};
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
+
     # custom dotfiles
     # updating dotfile with nix flake (video6 12:10)
     dotfiles = {
@@ -26,7 +36,7 @@
     };
   };
 
-  outputs = { self, dotfiles, home-manager, nixpkgs, ... }@inputs:
+  outputs = { self, disko, dotfiles, home-manager, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
       systems = [
@@ -44,7 +54,10 @@
       nixosConfigurations = {
         y3nos = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/y3nos ];
+          modules = [ 
+            ./hosts/y3nos
+            inputs.disko.nixosModules.disko
+          ];
         };
       };
       homeConfigurations = {
