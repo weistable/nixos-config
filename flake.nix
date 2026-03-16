@@ -22,7 +22,7 @@
     # disko (use in cloudserver, vm, .etc)
     # disko version follows nixos-unstable
     disko = {
-      url = {github:nix-community/disko};
+      url = “github:nix-community/disko”;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
