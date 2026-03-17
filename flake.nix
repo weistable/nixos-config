@@ -18,6 +18,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
+    # agenix (video9 1:30)
+    agenix.url = "github:ryantm/agenix";
 
     # disko (use in cloudserver, vm, .etc)
     # disko version follows nixos-unstable
@@ -36,7 +38,7 @@
     };
   };
 
-  outputs = { self, disko, dotfiles, home-manager, nixpkgs, ... }@inputs:
+  outputs = { self, agenix, disko, dotfiles, home-manager, nixpkgs, ... }@inputs:
     let
       inherit (self) outputs;
       systems = [
@@ -57,6 +59,7 @@
           modules = [ 
             ./hosts/y3nos
             inputs.disko.nixosModules.disko
+            agenix.nixosModules.default
           ];
         };
       };
