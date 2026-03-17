@@ -101,6 +101,13 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
+
+  # (video 10 18:40)
+ 	networking.nat.enable = true;
+  networking.nat.internalInterfaces = ["ve-+"];
+	networking.nat.externalInterface = "enp1s0";
+
+
   # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
